@@ -5,8 +5,8 @@
 int main () {
     CLI c;
 
-    // c.lineOutput();
+    c.lineOutput();
 
-    c.taskMover();
+    // c.taskMover();
  
 }

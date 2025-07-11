@@ -126,14 +126,21 @@ void CLI::printAll(){
 
 
 void CLI::taskMover(){
+
+    Habit h = Habit("Task1", "Cat1");
+
     std::fstream file(filepath);
     std::string line;
     int length = 0;
+
+
     while(std::getline(file, line)){
         length++;
     }
 
     std::cout << "File is " << length << "lines long" << std::endl;
+
+    
 
 
 }
