@@ -8,7 +8,6 @@
 #include <sstream>
 #include <vector>
 
-std::string filepath = ""; 
 
 
 /* **********************************************************
@@ -18,7 +17,7 @@ std::string filepath = "";
 ********************************************************** */
 
 struct Habit {
-    
+
     std::string name;
     int reward;
     std::string group;
@@ -50,9 +49,10 @@ class CLI {
         std::string lineOutput();
         int promptTranslate(std::string prompt);
         bool inputTriage(int input);
-        void fileReader(std::string filepath);
+        void fileReader();
         void printAll();
         void fileWriter(std::string filepath);
+        void taskMover();
 
     };
 

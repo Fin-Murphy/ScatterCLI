@@ -1,5 +1,6 @@
 #include "Functions.h"
 
+std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
 std::string inputMessage = "| > ";
 std::string screenFill = "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
 
@@ -55,7 +56,7 @@ bool CLI::inputTriage(int input) {
             break;
 
         case 2: 
-            fileReader("/Users/fin/Desktop/BRAIN2/K1.md");
+            fileReader();
             printAll();
             
             break; 
@@ -72,7 +73,7 @@ bool CLI::inputTriage(int input) {
 
 }
 
-void CLI::fileReader(std::string filepath){
+void CLI::fileReader(){
     std::string shitString = "barf";
 
     bool crunch = true;
@@ -113,11 +114,27 @@ void CLI::fileReader(std::string filepath){
     }
 }
 
+
+
 void CLI::printAll(){
     for(Habit h : this->habitContainer){
         std::cout << std::endl;
         std::cout << h.group << " " << h.name << std::endl;
     }
     
+}
+
+
+void CLI::taskMover(){
+    std::fstream file(filepath);
+    std::string line;
+    int length = 0;
+    while(std::getline(file, line)){
+        length++;
+    }
+
+    std::cout << "File is " << length << "lines long" << std::endl;
+
+
 }
 
