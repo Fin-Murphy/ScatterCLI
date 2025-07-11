@@ -71,11 +71,6 @@ bool CLI::inputTriage(int input) {
     return outVal;
 
 }
-//TEsting commit 
-
-//Why 
-
-
 
 void CLI::fileReader(std::string filepath){
     std::string shitString = "barf";
