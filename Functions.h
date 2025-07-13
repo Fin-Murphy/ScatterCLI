@@ -60,7 +60,7 @@ class CLI {
         int promptTranslate(std::string prompt);
         bool inputTriage(int input);
 
-        void strikeTask(std::string habitName);
+        void strikeTask();
 
         void printAll();
 

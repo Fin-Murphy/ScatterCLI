@@ -89,56 +89,20 @@ void CLI::fileCloser(){
 }
 
 
-void CLI::strikeTask(std::string habitName){
+void CLI::strikeTask(){
+
+    std::ifstream inFile(filepath);
+
     std::ofstream outFile(filepath);
-
-    this->fileOpener();
-
-    bool crunch = true;
 
     std::string line;
 
-    std::string delimiter;
-    std::string name;
-    std::string group;
-
-    while(std::getline(this->file, line) && crunch == true){
-
-        std::istringstream ss(line);
-
-        ss >> delimiter;
-
-        if(delimiter == "##"){
-            ss >> group;
-            if(group == "COMPLETED"){
-                crunch = false;
-            }
-        } 
-        
-        else if(delimiter == "-"){
-            ss >> delimiter;
-            ss >> delimiter;
-            ss >> name;
-            
-            std::cout << name << " - " << group << std::endl;
-
-            // Habit h = Habit(name, group);
-            // // habitContainer.push_back(h);
-            // std::cout << std::endl;
-            // std::cout << h.group << " " << h.name << std::endl;
-
-        } else {
-            delimiter = "";
-        }
-
-        outFile << line;
-
+    while(std::getline(inFile, line)){
+        outFile << "Howdy?" << line << std::endl;
     }
 
-    outFile << "Testing write" << std::endl;
+    inFile.close();
     outFile.close();
-
-    this->fileCloser();
 
 }
 
