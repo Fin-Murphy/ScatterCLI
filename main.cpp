@@ -7,7 +7,4 @@ int main () {
 
    c.lineOutput();
 
-    //c.strikeTask("Task2");
-
-
 }

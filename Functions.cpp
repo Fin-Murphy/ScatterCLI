@@ -5,7 +5,6 @@ std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
 std::string inputMessage = "| > ";
 std::string screenFill = "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
 
-
 std::string CLI::lineOutput () {
 
     std::string prompt; 
@@ -36,7 +35,7 @@ int CLI::promptTranslate(std::string prompt) {
     else if (prompt == "strike"){
         returnval = 3; 
     } 
-    else if (prompt == ""){
+    else if (prompt == "add"){
         returnval = 4; 
     } else {}
 
@@ -93,6 +92,59 @@ void CLI::fileCloser(){
     }
 }
 
+void CLI::addTask(){
+
+    std::string name;
+
+    std::cout << "Name of task to add |> ";
+    std::cin >> name;
+
+    std::ifstream inFile(filepath);
+    std::ofstream outFile("Temp.txt");
+
+    std::string line;
+    std::string delimiter;
+
+    while(std::getline(inFile, line)){
+        outFile << line << std::endl;
+    }
+
+    inFile.close();
+    outFile.close();
+
+
+    std::ifstream tempFile("Temp.txt");
+    std::ofstream finalizeFile(filepath);
+
+    bool foundFirstCategory = false;
+    std::string delimiter = "";
+
+    while(std::getline(tempFile, line)){
+
+        if(foundFirstCategory == true) {
+            finalizeFile << line << std::endl;
+        } else {
+
+            std::stringstream ss(line);
+            ss >> delimiter;
+
+            if(delimiter == "##"){
+                foundFirstCategory = true;
+            }
+            // Make it so that the line gets inserted if foundFirstCategory is true
+
+
+        }
+
+        
+
+    }
+
+    tempFile.close();
+    finalizeFile.close();
+
+}
+
 
 void CLI::strikeTask(){
 
@@ -142,6 +194,9 @@ void CLI::strikeTask(){
                 outFile << taskToMove << std::endl;
                 copyLine = false;
             }
+        } else if (delimiter == ""){
+            copyLine = false;
+
         }
 
         if(copyLine){
@@ -149,9 +204,6 @@ void CLI::strikeTask(){
         }
 
     }
-
-
-
 
     //Copy temporary file to the main file
 
@@ -167,7 +219,6 @@ void CLI::strikeTask(){
 
     tempFile.close();
     finalizeFile.close();
-
 
 }
 

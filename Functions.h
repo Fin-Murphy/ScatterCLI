@@ -30,7 +30,6 @@ struct Habit {
 
 };
 
-
 /* **********************************************************
 
                         CLI CLASS DECLARATION
@@ -61,6 +60,8 @@ class CLI {
         bool inputTriage(int input);
 
         void strikeTask();
+
+        void addTask();
 
         void printAll();
 

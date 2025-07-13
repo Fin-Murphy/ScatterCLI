@@ -6,13 +6,11 @@ kanban-plugin: board
 l
 ## test
 
-- [ ] Task4
 - [ ] Task3
+## COMPLETED
+- [ ] Task4
 - [ ] Task2
-
-## COMPLETED
 - [ ] Task1
-## COMPLETED
 
 - [ ] TaskC4
 - [ ] TaskC3
