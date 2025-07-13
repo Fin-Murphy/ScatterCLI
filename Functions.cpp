@@ -72,6 +72,12 @@ bool CLI::inputTriage(int input) {
 
 }
 
+void CLI::fileOpener(){
+    std::ifstream inFile(filepath);
+    this->file = inFile;
+}
+
+
 void CLI::fileReader(){
 
     bool crunch = true;

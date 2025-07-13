@@ -43,6 +43,8 @@ class CLI {
         int runtime; 
         int size;
         std::vector<Habit> habitContainer;
+        std::string filepath = "";
+        std::stringstream file;
         
     public: 
 
@@ -51,9 +53,13 @@ class CLI {
             fileReader();
         }
 
+        
         std::string lineOutput();
         int promptTranslate(std::string prompt);
         bool inputTriage(int input);
+
+        void fileOpener();
+
         void fileReader();
         void printAll();
         void fileWriter(std::string filepath);
