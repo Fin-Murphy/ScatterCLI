@@ -104,25 +104,12 @@ void CLI::addTask(){
 
     std::string line;
     std::string delimiter;
+    bool foundFirstCategory = false;
 
     while(std::getline(inFile, line)){
-        outFile << line << std::endl;
-    }
-
-    inFile.close();
-    outFile.close();
-
-
-    std::ifstream tempFile("Temp.txt");
-    std::ofstream finalizeFile(filepath);
-
-    bool foundFirstCategory = false;
-    std::string delimiter = "";
-
-    while(std::getline(tempFile, line)){
 
         if(foundFirstCategory == true) {
-            finalizeFile << line << std::endl;
+            outFile << line << std::endl;
         } else {
 
             std::stringstream ss(line);
@@ -133,13 +120,15 @@ void CLI::addTask(){
             }
             // Make it so that the line gets inserted if foundFirstCategory is true
 
-
         }
-
-        
-
     }
 
+    inFile.close();
+    outFile.close();
+
+    std::ifstream tempFile("Temp.txt");
+    std::ofstream finalizeFile(filepath);
+   
     tempFile.close();
     finalizeFile.close();
 
