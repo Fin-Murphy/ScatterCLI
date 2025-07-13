@@ -46,6 +46,11 @@ class CLI {
         
     public: 
 
+        //Constructor
+        CLI(){
+            fileReader();
+        }
+
         std::string lineOutput();
         int promptTranslate(std::string prompt);
         bool inputTriage(int input);

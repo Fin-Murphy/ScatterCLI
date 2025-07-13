@@ -20,7 +20,7 @@ std::string CLI::lineOutput () {
     }
     return "Hallo";
 }
-//Hello
+
 int CLI::promptTranslate(std::string prompt) {
     int returnval = 0;
 
@@ -47,7 +47,7 @@ bool CLI::inputTriage(int input) {
     switch(input) {
     
         case 0: 
-            std::cout << "Test1";
+            //std::cout << "Test1";
             break;
 
         case 1:
@@ -56,7 +56,6 @@ bool CLI::inputTriage(int input) {
             break;
 
         case 2: 
-            fileReader();
             printAll();
             
             break; 
