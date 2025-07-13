@@ -90,6 +90,7 @@ void CLI::fileCloser(){
 
 
 void CLI::strikeTask(std::string habitName){
+    std::ofstream outFile(filepath);
 
     this->fileOpener();
 
@@ -100,7 +101,6 @@ void CLI::strikeTask(std::string habitName){
     std::string delimiter;
     std::string name;
     std::string group;
-
 
     while(std::getline(this->file, line) && crunch == true){
 
@@ -130,7 +130,13 @@ void CLI::strikeTask(std::string habitName){
         } else {
             delimiter = "";
         }
+
+        outFile << line;
+
     }
+
+    outFile << "Testing write" << std::endl;
+    outFile.close();
 
     this->fileCloser();
 
