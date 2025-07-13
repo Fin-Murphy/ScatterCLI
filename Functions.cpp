@@ -110,9 +110,10 @@ void CLI::strikeTask(){
 // ----------------------------------------------------------
 
     std::string line;
-    char delimiter;
+    std::string delimiter;
     bool copyLine;
     std::string testName;
+    std::string taskToMove;
 
 
     //Locate Task line, skip
@@ -124,15 +125,24 @@ void CLI::strikeTask(){
 
         ss >> delimiter;
 
-        if(delimiter == '-'){
+        if(delimiter == "-"){
             ss >> delimiter;
             ss >> delimiter;
             ss >> testName;
             if(testName == name){
                 copyLine = false;
-                std::cout << "| > " << name << " Struck > |" << std::endl;
+                taskToMove = line;
+
+                std::cout << screenFill <<  "| > " << name << " Struck > |" << std::endl;
             }
-        } 
+        } else if (delimiter == "##"){
+            ss >> delimiter;
+            if(delimiter == "COMPLETED"){
+                outFile << "## COMPLETED" << std::endl;
+                outFile << taskToMove << std::endl;
+                copyLine = false;
+            }
+        }
 
         if(copyLine){
             outFile << line << std::endl;
