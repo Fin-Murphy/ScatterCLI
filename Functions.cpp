@@ -1,8 +1,10 @@
 #include "Functions.h"
 
+
 std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
 std::string inputMessage = "| > ";
 std::string screenFill = "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
+
 
 std::string CLI::lineOutput () {
 
@@ -21,6 +23,7 @@ std::string CLI::lineOutput () {
     return "Hallo";
 }
 
+
 int CLI::promptTranslate(std::string prompt) {
     int returnval = 0;
 
@@ -30,7 +33,7 @@ int CLI::promptTranslate(std::string prompt) {
     else if (prompt == "list"){
         returnval = 2;
     }
-    else if (prompt == ""){
+    else if (prompt == "strike"){
         returnval = 3; 
     } 
     else if (prompt == ""){
@@ -40,6 +43,7 @@ int CLI::promptTranslate(std::string prompt) {
     return returnval;
 }
 
+
 bool CLI::inputTriage(int input) {
 
     bool outVal = true;
@@ -47,7 +51,6 @@ bool CLI::inputTriage(int input) {
     switch(input) {
     
         case 0: 
-            //std::cout << "Test1";
             break;
 
         case 1:
@@ -61,7 +64,7 @@ bool CLI::inputTriage(int input) {
             break; 
 
         case 3: 
-            std::cout << "Test4";
+            strikeTask();
             break;
 
         case 4:
@@ -71,7 +74,8 @@ bool CLI::inputTriage(int input) {
     return outVal;
 
 }
- 
+
+
 void CLI::fileOpener(){
     try {
         file.open(filepath);
@@ -79,6 +83,7 @@ void CLI::fileOpener(){
         std::cout << "File opening failed. This object is now useless." << std::endl;
     }
 }
+
 
 void CLI::fileCloser(){
     try {
@@ -91,21 +96,70 @@ void CLI::fileCloser(){
 
 void CLI::strikeTask(){
 
-    std::ifstream inFile(filepath);
+    std::string name;
 
-    std::ofstream outFile(filepath);
+    std::cout << "task to kill |> ";
+    std::cin >> name;
+
+
+    std::ifstream inFile(filepath);
+    std::ofstream outFile("Temp.txt");
+
+// ---------------------------------------------------------
+//  WRITE TO A TEMPORARY FILE TO SAVE THE DATA IN HERE ~
+// ----------------------------------------------------------
 
     std::string line;
+    char delimiter;
+    bool copyLine;
+    std::string testName;
+
+
+    //Locate Task line, skip
 
     while(std::getline(inFile, line)){
-        outFile << "Howdy?" << line << std::endl;
+        copyLine = true;
+
+        std::stringstream ss(line);
+
+        ss >> delimiter;
+
+        if(delimiter == '-'){
+            ss >> delimiter;
+            ss >> delimiter;
+            ss >> testName;
+            if(testName == name){
+                copyLine = false;
+                std::cout << "| > " << name << " Struck > |" << std::endl;
+            }
+        } 
+
+        if(copyLine){
+            outFile << line << std::endl;
+        }
+
     }
+
+
+
+
+    //Copy temporary file to the main file
 
     inFile.close();
     outFile.close();
 
-}
+    std::ifstream tempFile("Temp.txt");
+    std::ofstream finalizeFile(filepath);
 
+    while(std::getline(tempFile, line)){
+        finalizeFile << line << std::endl;
+    }
+
+    tempFile.close();
+    finalizeFile.close();
+
+
+}
 
 
 void CLI::taskPrinter(){
@@ -160,7 +214,6 @@ void CLI::taskPrinter(){
 
     this->fileCloser();
 }
-
 
 
 void CLI::printAll(){

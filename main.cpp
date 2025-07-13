@@ -5,9 +5,9 @@
 int main () {
     CLI c;
 
-   // c.lineOutput();
+   c.lineOutput();
 
-    c.strikeTask();
+    //c.strikeTask("Task2");
 
 
 }
