@@ -56,7 +56,7 @@ bool CLI::inputTriage(int input) {
             break;
 
         case 2: 
-            printAll();
+            taskPrinter();
             
             break; 
 
@@ -75,10 +75,16 @@ bool CLI::inputTriage(int input) {
 void CLI::fileOpener(){
     try {
         file.open(filepath);
-        fileReader();
-        file.close();
     } catch (...){
         std::cout << "File opening failed. This object is now useless." << std::endl;
+    }
+}
+
+void CLI::fileCloser(){
+    try {
+        file.close();
+    } catch (...){
+        std::cout << "File closing failed." << std::endl;
     }
 }
 
@@ -100,13 +106,13 @@ void CLI::strikeTask(std::string habitName){
 
     }
 
-
-
 }
 
 
 
-void CLI::fileReader(){
+void CLI::taskPrinter(){
+
+    this->fileOpener();
 
     bool crunch = true;
 
@@ -116,6 +122,7 @@ void CLI::fileReader(){
     std::string name;
     std::string group;
 
+
     while(std::getline(this->file, line) && crunch == true){
 
         std::istringstream ss(line);
@@ -123,58 +130,39 @@ void CLI::fileReader(){
         ss >> delimiter;
 
         if(delimiter == "##"){
-            // std::cout << delimiter << std::endl;
             group = ss.str();
             if(group == "## COMPLETED"){
                 crunch = false;
             }
         } else if(delimiter == "-"){
-            // std::cout << delimiter << std::endl;
             ss >> delimiter;
             ss >> delimiter;
 
             name = ss.str();
+            std::cout << name;
+            // Habit h = Habit(name, group);
+            // // habitContainer.push_back(h);
 
-            Habit h = Habit(name, group);
-            habitContainer.push_back(h);
-            size++;
+            // std::cout << std::endl;
+            // std::cout << h.group << " " << h.name << std::endl;
+
         } else {
             delimiter = "";
         }
     }
+
+    this->fileCloser();
 }
 
 
 
 void CLI::printAll(){
-    for(Habit h : this->habitContainer){
+    std::vector<Habit> habCont;
+
+    for(Habit h : habCont){
         std::cout << std::endl;
         std::cout << h.group << " " << h.name << std::endl;
     }
     
-}
-
-
-void CLI::taskMover(){
-
-    Habit h = Habit("Task1", "Category1");
-
-    std::ifstream file(filepath);
-    std::string line;
-    int length = 0;
-
-
-    while(std::getline(file, line)){
-        length++;
-    }
-
-    while(std::getline(file, line)){
-        
-    }
-
-
-    std::cout << "File is " << length << "lines long" << std::endl;
-
-
 }
 

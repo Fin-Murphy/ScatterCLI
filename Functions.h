@@ -52,7 +52,9 @@ class CLI {
         CLI(){ fileOpener(); }
 
         void fileOpener();
-        void fileReader();
+        void fileCloser();
+
+        void taskPrinter();
         
         std::string lineOutput();
         int promptTranslate(std::string prompt);
