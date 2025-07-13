@@ -67,7 +67,7 @@ bool CLI::inputTriage(int input) {
             break;
 
         case 4:
-            std::cout << "Test5";
+            addTask();
             break;
     }
     return outVal;
@@ -96,7 +96,9 @@ void CLI::addTask(){
 
     std::string name;
 
-    std::cout << "Name of task to add |> ";
+    std::cout << screenFill;
+
+    std::cout << "| Name of task to add |> ";
     std::cin >> name;
 
     std::ifstream inFile(filepath);
@@ -107,20 +109,26 @@ void CLI::addTask(){
     bool foundFirstCategory = false;
 
     while(std::getline(inFile, line)){
-
-        if(foundFirstCategory == true) {
-            outFile << line << std::endl;
-        } else {
+        
+        if(foundFirstCategory == false){
 
             std::stringstream ss(line);
-            ss >> delimiter;
 
+            ss >> delimiter;
             if(delimiter == "##"){
                 foundFirstCategory = true;
-            }
-            // Make it so that the line gets inserted if foundFirstCategory is true
 
-        }
+                outFile << line << std::endl;
+                outFile << "- [ ] " << name << std::endl;
+
+            } else {
+                outFile << line << std::endl;
+            }
+
+        } else {
+            outFile << line << std::endl;
+        }            
+
     }
 
     inFile.close();
@@ -128,6 +136,10 @@ void CLI::addTask(){
 
     std::ifstream tempFile("Temp.txt");
     std::ofstream finalizeFile(filepath);
+
+    while(std::getline(tempFile,line)){
+        finalizeFile << line << std::endl;
+    }
    
     tempFile.close();
     finalizeFile.close();

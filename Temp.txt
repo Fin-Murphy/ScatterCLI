@@ -3,14 +3,18 @@
 kanban-plugin: board
 
 ---
-l
+
 ## test
 
+- [ ] Task5
 - [ ] Task4
 - [ ] Task3
 - [ ] Task2
-## COMPLETED
 - [ ] Task1
+
+
+## COMPLETED
+- [ ] Task6
 
 - [ ] TaskC4
 - [ ] TaskC3
@@ -22,6 +26,6 @@ l
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","list-collapse":[false,false]}
+{"kanban-plugin":"board"}
 ```
-%%Howdy?---
+%%
