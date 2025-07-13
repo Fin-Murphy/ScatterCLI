@@ -79,7 +79,7 @@ bool CLI::inputTriage(int input) {
             deleteTask();
             break;
     }
-    
+
     return outVal;
 
 }
@@ -167,7 +167,6 @@ void CLI::deleteTask(){
 
     std::cout << screenFill;
 
-    
     std::string testName;
 
     std::ifstream inFile(filepath);
