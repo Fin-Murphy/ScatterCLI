@@ -49,7 +49,7 @@ class CLI {
     public: 
 
         //Constructor
-        CLI(){ fileOpener(); }
+        // CLI(){ fileOpener(); }
 
         void fileOpener();
         void fileCloser();

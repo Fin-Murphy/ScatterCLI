@@ -91,26 +91,56 @@ void CLI::fileCloser(){
 
 void CLI::strikeTask(std::string habitName){
 
-    std::string line = "";
-    std::string dupe = "";
+    this->fileOpener();
 
-    bool grabbedLine = false;
+    bool crunch = true;
 
-    while(std::getline(file,line)){
-        //Idea for logic: Have line get grabbed when iterating through, set a bool when habit found and remove that line, 
-        //Then drop it off after the completed bar is located. 
+    std::string line;
 
-        //OR just read in all lines, store them in dynamic pointers, and then write them out again in a new file every query. 
-        //That's probably the best method, since syntax is constant and the files are easily replicatable. It may get messy 
-        // with large files but I can deal with that later. 
+    std::string delimiter;
+    std::string name;
+    std::string group;
 
+
+    while(std::getline(this->file, line) && crunch == true){
+
+        std::istringstream ss(line);
+
+        ss >> delimiter;
+
+        if(delimiter == "##"){
+            ss >> group;
+            if(group == "COMPLETED"){
+                crunch = false;
+            }
+        } 
+        
+        else if(delimiter == "-"){
+            ss >> delimiter;
+            ss >> delimiter;
+            ss >> name;
+            
+            std::cout << name << " - " << group << std::endl;
+
+            // Habit h = Habit(name, group);
+            // // habitContainer.push_back(h);
+            // std::cout << std::endl;
+            // std::cout << h.group << " " << h.name << std::endl;
+
+        } else {
+            delimiter = "";
+        }
     }
+
+    this->fileCloser();
 
 }
 
 
 
 void CLI::taskPrinter(){
+
+    std::cout << std::endl;
 
     this->fileOpener();
 
@@ -126,23 +156,30 @@ void CLI::taskPrinter(){
     while(std::getline(this->file, line) && crunch == true){
 
         std::istringstream ss(line);
-        
+
+
+        // NOTE - STREAM EXTRACTION OPERATOR DOES NOT ACTUALLY REMOVE CONTENT FROM THE STRING, ONLY
+        // ADVANCES THE CURSOR WITHIN THE STRING!!!!! SO REFERENCING THE STRINGSTREAM DIRECTLY WILL ALWAYS
+        // RETURN ALL OF THE ORIGINIAL CONTENT FROM THE STRING!
+
         ss >> delimiter;
 
         if(delimiter == "##"){
-            group = ss.str();
-            if(group == "## COMPLETED"){
+            ss >> group;
+            if(group == "COMPLETED"){
                 crunch = false;
             }
-        } else if(delimiter == "-"){
+        } 
+        
+        else if(delimiter == "-"){
             ss >> delimiter;
             ss >> delimiter;
+            ss >> name;
+            
+            std::cout << name << " - " << group << std::endl;
 
-            name = ss.str();
-            std::cout << name;
             // Habit h = Habit(name, group);
             // // habitContainer.push_back(h);
-
             // std::cout << std::endl;
             // std::cout << h.group << " " << h.name << std::endl;
 
@@ -166,3 +203,4 @@ void CLI::printAll(){
     
 }
 
+  
