@@ -71,25 +71,52 @@ bool CLI::inputTriage(int input) {
     return outVal;
 
 }
-
+ 
 void CLI::fileOpener(){
-    std::ifstream inFile(filepath);
-    this->file = inFile;
+    try {
+        file.open(filepath);
+        fileReader();
+        file.close();
+    } catch (...){
+        std::cout << "File opening failed. This object is now useless." << std::endl;
+    }
 }
+
+
+void CLI::strikeTask(std::string habitName){
+
+    std::string line = "";
+    std::string dupe = "";
+
+    bool grabbedLine = false;
+
+    while(std::getline(file,line)){
+        //Idea for logic: Have line get grabbed when iterating through, set a bool when habit found and remove that line, 
+        //Then drop it off after the completed bar is located. 
+
+        //OR just read in all lines, store them in dynamic pointers, and then write them out again in a new file every query. 
+        //That's probably the best method, since syntax is constant and the files are easily replicatable. It may get messy 
+        // with large files but I can deal with that later. 
+
+    }
+
+
+
+}
+
 
 
 void CLI::fileReader(){
 
     bool crunch = true;
 
-    std::ifstream file(filepath);
     std::string line;
 
     std::string delimiter;
     std::string name;
     std::string group;
 
-    while(std::getline(file, line) && crunch == true){
+    while(std::getline(this->file, line) && crunch == true){
 
         std::istringstream ss(line);
         

@@ -43,27 +43,24 @@ class CLI {
         int runtime; 
         int size;
         std::vector<Habit> habitContainer;
-        std::string filepath = "";
-        std::stringstream file;
+        std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
+        std::ifstream file;
         
     public: 
 
         //Constructor
-        CLI(){
-            fileReader();
-        }
+        CLI(){ fileOpener(); }
 
+        void fileOpener();
+        void fileReader();
         
         std::string lineOutput();
         int promptTranslate(std::string prompt);
         bool inputTriage(int input);
 
-        void fileOpener();
+        void strikeTask(std::string habitName);
 
-        void fileReader();
         void printAll();
-        void fileWriter(std::string filepath);
-        void taskMover();
 
     };
 
