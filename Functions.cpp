@@ -20,7 +20,7 @@ std::string CLI::lineOutput () {
     }
     return "Hallo";
 }
-
+//Hello
 int CLI::promptTranslate(std::string prompt) {
     int returnval = 0;
 
@@ -74,7 +74,6 @@ bool CLI::inputTriage(int input) {
 }
 
 void CLI::fileReader(){
-    std::string shitString = "barf";
 
     bool crunch = true;
 
@@ -108,7 +107,6 @@ void CLI::fileReader(){
             habitContainer.push_back(h);
             size++;
         } else {
-            // std::cout << "Syntax line" << std::endl;
             delimiter = "";
         }
     }
@@ -127,9 +125,9 @@ void CLI::printAll(){
 
 void CLI::taskMover(){
 
-    Habit h = Habit("Task1", "Cat1");
+    Habit h = Habit("Task1", "Category1");
 
-    std::fstream file(filepath);
+    std::ifstream file(filepath);
     std::string line;
     int length = 0;
 
@@ -138,9 +136,12 @@ void CLI::taskMover(){
         length++;
     }
 
-    std::cout << "File is " << length << "lines long" << std::endl;
+    while(std::getline(file, line)){
+        
+    }
 
-    
+
+    std::cout << "File is " << length << "lines long" << std::endl;
 
 
 }
