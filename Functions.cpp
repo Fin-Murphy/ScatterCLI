@@ -14,6 +14,7 @@ std::string CLI::lineOutput () {
     while(cycle){
         std::cout << inputMessage;
         std::cin >> prompt;
+
         std::cout << screenFill << inputMessage;
 
         cycle = inputTriage(promptTranslate(prompt));
@@ -26,6 +27,9 @@ std::string CLI::lineOutput () {
 int CLI::promptTranslate(std::string prompt) {
     int returnval = 0;
 
+    if(prompt == ""){
+        returnval = 0;
+    }
     if(prompt == "kill"){
         returnval = 1;
     }
@@ -37,6 +41,8 @@ int CLI::promptTranslate(std::string prompt) {
     } 
     else if (prompt == "add"){
         returnval = 4; 
+    } else if (prompt == "del"){
+        returnval = 5; 
     } else {}
 
     return returnval;
@@ -50,10 +56,10 @@ bool CLI::inputTriage(int input) {
     switch(input) {
     
         case 0: 
-            break;
+
+        break;
 
         case 1:
-            std::cout << "Test2";
             outVal = false;
             break;
 
@@ -69,7 +75,11 @@ bool CLI::inputTriage(int input) {
         case 4:
             addTask();
             break;
+        case 5:
+            deleteTask();
+            break;
     }
+    
     return outVal;
 
 }
@@ -121,6 +131,72 @@ void CLI::addTask(){
                 outFile << line << std::endl;
                 outFile << "- [ ] " << name << std::endl;
 
+            } else {
+                outFile << line << std::endl;
+            }
+
+        } else {
+            outFile << line << std::endl;
+        }            
+
+    }
+
+    inFile.close();
+    outFile.close();
+
+    std::ifstream tempFile("Temp.txt");
+    std::ofstream finalizeFile(filepath);
+
+    while(std::getline(tempFile,line)){
+        finalizeFile << line << std::endl;
+    }
+   
+    tempFile.close();
+    finalizeFile.close();
+
+}
+
+void CLI::deleteTask(){
+
+    std::string name;
+
+    std::cout << screenFill;
+
+    std::cout << "| Name of task to delete |> ";
+    std::cin >> name;
+
+    std::cout << screenFill;
+
+    
+    std::string testName;
+
+    std::ifstream inFile(filepath);
+    std::ofstream outFile("Temp.txt");
+
+    std::string line;
+    std::string delimiter;
+    bool foundSkippable = false;
+
+    while(std::getline(inFile, line)){
+        
+        if(foundSkippable == false){
+
+            std::stringstream ss(line);
+
+            ss >> delimiter;
+            if(delimiter == "-"){
+                ss >> delimiter;
+                ss >> delimiter;
+
+                ss >> testName;
+
+                if(testName == name){
+                    std::cout << "| Deleted item" << std::endl;
+                    foundSkippable = true;
+                } else {
+                    outFile << line << std::endl;
+
+                }
             } else {
                 outFile << line << std::endl;
             }

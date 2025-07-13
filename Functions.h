@@ -63,6 +63,8 @@ class CLI {
 
         void addTask();
 
+        void deleteTask();
+
         void printAll();
 
     };
