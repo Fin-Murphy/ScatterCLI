@@ -8,6 +8,7 @@ kanban-plugin: board
 
 - [ ] Task 4
 - [ ] Task 3
+- [ ] Task 2
 - [ ] Task 1
 
 ## COMPLETED

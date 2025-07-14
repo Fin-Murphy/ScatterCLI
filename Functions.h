@@ -66,10 +66,6 @@ class CLI {
 
         void deleteTask();
 
-        std::string readInTask(std::istringstream ss,std::string name);
-
-        void printAll();
-
     };
 
 #endif

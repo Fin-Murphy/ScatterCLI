@@ -17,6 +17,8 @@ std::string CLI::lineOutput () {
 
         std::cout << screenFill << inputMessage;
 
+        taskPrinter();
+
         cycle = inputTriage(promptTranslate(prompt));
 
     }
@@ -101,13 +103,16 @@ void CLI::fileCloser(){
 }
 
 void CLI::addTask(){
+    
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::string name;
 
     std::cout << screenFill;
+    taskPrinter();
 
     std::cout << "| Name of task to add |> ";
-    std::cin >> name;
+    std::getline(std::cin, name);
 
     std::ifstream inFile(filepath);
     std::ofstream outFile("Temp.txt");
@@ -151,6 +156,8 @@ void CLI::addTask(){
    
     tempFile.close();
     finalizeFile.close();
+
+    taskPrinter();
 
 }
 
@@ -226,6 +233,8 @@ void CLI::deleteTask(){
    
     tempFile.close();
     finalizeFile.close();
+    
+    taskPrinter();
 
 }
 
@@ -314,6 +323,8 @@ void CLI::strikeTask(){
     tempFile.close();
     finalizeFile.close();
 
+    taskPrinter();
+
 }
 
 
@@ -380,13 +391,4 @@ void CLI::taskPrinter(){
 }
 
 
-void CLI::printAll(){
-    std::vector<Habit> habCont;
-
-    for(Habit h : habCont){
-        std::cout << std::endl;
-        std::cout << h.group << " " << h.name << std::endl;
-    }
-    
-}
 
