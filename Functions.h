@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <limits>
 
 
 
@@ -42,7 +43,7 @@ class CLI {
         int runtime; 
         int size;
         std::vector<Habit> habitContainer;
-        std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
+        const std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
         std::ifstream file;
         
     public: 
@@ -64,6 +65,8 @@ class CLI {
         void addTask();
 
         void deleteTask();
+
+        std::string readInTask(std::istringstream ss,std::string name);
 
         void printAll();
 

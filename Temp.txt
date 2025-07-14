@@ -3,23 +3,41 @@
 kanban-plugin: board
 
 ---
-Tas
+
 ## test
-- [ ] Task5
 
-- [ ] Task4
-- [ ] Task3
-- [ ] Task2
-- [ ] Task1
-
+- [ ] Task 4
+- [ ] Task 3
+- [ ] Task 1
 
 ## COMPLETED
-- [ ] Task6
 
-- [ ] TaskC4
-- [ ] TaskC3
-- [ ] TaskC2
-- [ ] TaskC1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- [ ] Task 4 C
+- [ ] Task 3 C
+- [ ] Task 2 C
+- [ ] Task 1 C
 
 
 

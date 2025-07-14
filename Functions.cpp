@@ -38,10 +38,10 @@ int CLI::promptTranslate(std::string prompt) {
     }
     else if (prompt == "strike"){
         returnval = 3; 
-    } 
+    }
     else if (prompt == "add"){
         returnval = 4; 
-    } else if (prompt == "del"){
+    } else if (prompt == "delete"){
         returnval = 5; 
     } else {}
 
@@ -65,9 +65,7 @@ bool CLI::inputTriage(int input) {
 
         case 2: 
             taskPrinter();
-            
             break; 
-
         case 3: 
             strikeTask();
             break;
@@ -162,8 +160,10 @@ void CLI::deleteTask(){
 
     std::cout << screenFill;
 
-    std::cout << "| Name of task to delete |> ";
-    std::cin >> name;
+   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::cout << "Task to delete: ";
+    std::getline(std::cin, name);
 
     std::cout << screenFill;
 
@@ -183,11 +183,19 @@ void CLI::deleteTask(){
             std::stringstream ss(line);
 
             ss >> delimiter;
+
             if(delimiter == "-"){
+
                 ss >> delimiter;
                 ss >> delimiter;
 
-                ss >> testName;
+                testName = "";
+                char c;
+                bool keeploop = true;
+                ss.get(c);
+                while(ss.get(c) && keeploop){
+                    testName += c;
+                }
 
                 if(testName == name){
                     std::cout << "| Deleted item" << std::endl;
@@ -223,12 +231,12 @@ void CLI::deleteTask(){
 
 
 void CLI::strikeTask(){
+    
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::string name;
-
-    std::cout << "task to kill |> ";
-    std::cin >> name;
-
+    std::cout << "Task to strike: ";
+    std::getline(std::cin, name);
 
     std::ifstream inFile(filepath);
     std::ofstream outFile("Temp.txt");
@@ -240,6 +248,7 @@ void CLI::strikeTask(){
     std::string line;
     std::string delimiter;
     bool copyLine;
+
     std::string testName;
     std::string taskToMove;
 
@@ -247,6 +256,7 @@ void CLI::strikeTask(){
     //Locate Task line, skip
 
     while(std::getline(inFile, line)){
+        // std::cout << "entered" << std::endl;    
         copyLine = true;
 
         std::stringstream ss(line);
@@ -256,13 +266,23 @@ void CLI::strikeTask(){
         if(delimiter == "-"){
             ss >> delimiter;
             ss >> delimiter;
-            ss >> testName;
+
+            testName = "";
+            char c;
+            bool keeploop = true;
+            ss.get(c);
+            while(ss.get(c) && keeploop){
+                testName += c;
+            }
+
             if(testName == name){
                 copyLine = false;
                 taskToMove = line;
 
-                std::cout << screenFill <<  "| > " << name << " Struck > |" << std::endl;
+                std::cout << screenFill <<  "| > " << name << " Struck" << std::endl;
             }
+
+
         } else if (delimiter == "##"){
             ss >> delimiter;
             if(delimiter == "COMPLETED"){
@@ -272,13 +292,11 @@ void CLI::strikeTask(){
             }
         } else if (delimiter == ""){
             copyLine = false;
-
         }
 
         if(copyLine){
             outFile << line << std::endl;
         }
-
     }
 
     //Copy temporary file to the main file
@@ -316,6 +334,7 @@ void CLI::taskPrinter(){
 
     while(std::getline(this->file, line) && crunch == true){
 
+        name = "";
         std::istringstream ss(line);
 
 
@@ -335,7 +354,15 @@ void CLI::taskPrinter(){
         else if(delimiter == "-"){
             ss >> delimiter;
             ss >> delimiter;
-            ss >> name;
+             
+                char c;
+                bool keeploop = true;
+                while(ss.get(c) && keeploop){
+                    if(c == '\n'){
+                        keeploop = false;
+                    } else {name += c;}
+                }
+
             
             std::cout << name << " - " << group << std::endl;
 
@@ -363,4 +390,3 @@ void CLI::printAll(){
     
 }
 
-  

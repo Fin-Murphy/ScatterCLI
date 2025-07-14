@@ -5,6 +5,11 @@
 int main () {
     CLI c;
 
+    // std::string name;
+
+    // std::getline(std::cin, name);
+    // std::cout << name;
+
    c.lineOutput();
 
 }
