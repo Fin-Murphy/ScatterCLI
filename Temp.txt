@@ -4,41 +4,21 @@ kanban-plugin: board
 
 ---
 
-## test
+## TODO
 
-- [ ] Task 4
-- [ ] Task 3
-- [ ] Task 2
-- [ ] Task 1
+- [ ] Ensure error thrown on file open failure
+- [ ] shunt tasks with improper syntax upon indexing
+- [ ] Throw error upon no filepath specified
+- [ ] Add function to recognize due date syntax in-line with task name
+- [ ] Add card duplication function
+- [ ] Throw error when whitespace input instead of accepting line
+- [ ] Data validation for new task name
+- [ ] Add user input on CL for task addition
+
 
 ## COMPLETED
+- [ ] Add data validation when transcribing temp file to final file
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- [ ] Task 4 C
-- [ ] Task 3 C
-- [ ] Task 2 C
-- [ ] Task 1 C
 
 
 

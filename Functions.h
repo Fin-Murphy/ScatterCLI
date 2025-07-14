@@ -11,6 +11,7 @@
 
 
 
+
 /* **********************************************************
 
                         HABIT STRUCT DECLARATION
@@ -43,10 +44,12 @@ class CLI {
         int runtime; 
         int size;
         std::vector<Habit> habitContainer;
-        const std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
+        // std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
         std::ifstream file;
         
     public: 
+
+        std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
 
         //Constructor
         // CLI(){ fileOpener(); }

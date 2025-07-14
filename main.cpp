@@ -2,14 +2,15 @@
 #include <iostream>
 
 
-int main () {
+int main (int argc, char * argv[]) {
     CLI c;
 
-    // std::string name;
+    if(argc < 2){
+			std::cout << "Argc less than 2. Run again and input additonal args.";
+	}
 
-    // std::getline(std::cin, name);
-    // std::cout << name;
+    c.filepath = argv[1];
 
-   c.lineOutput();
+    c.lineOutput();
 
 }

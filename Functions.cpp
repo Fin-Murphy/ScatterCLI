@@ -1,7 +1,7 @@
 #include "Functions.h"
 
 
-std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
+// std::string filepath = "/Users/fin/Desktop/BRAIN2/K1.md";
 std::string inputMessage = "| > ";
 std::string screenFill = "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
 
@@ -16,9 +16,6 @@ std::string CLI::lineOutput () {
         std::cin >> prompt;
 
         std::cout << screenFill << inputMessage;
-
-        taskPrinter();
-
         cycle = inputTriage(promptTranslate(prompt));
 
     }
@@ -157,6 +154,8 @@ void CLI::addTask(){
     tempFile.close();
     finalizeFile.close();
 
+    std::cout << screenFill;
+
     taskPrinter();
 
 }
@@ -169,6 +168,7 @@ void CLI::deleteTask(){
 
    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+    taskPrinter();
     std::cout << "Task to delete: ";
     std::getline(std::cin, name);
 
@@ -243,6 +243,7 @@ void CLI::strikeTask(){
     
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+    taskPrinter();
     std::string name;
     std::cout << "Task to strike: ";
     std::getline(std::cin, name);
@@ -375,7 +376,7 @@ void CLI::taskPrinter(){
                 }
 
             
-            std::cout << name << " - " << group << std::endl;
+            std::cout << group << " - >" << name << std::endl;
 
             // Habit h = Habit(name, group);
             // // habitContainer.push_back(h);
