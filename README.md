@@ -22,7 +22,11 @@ but I usually run fish+tmux so this hasn't affected my workflow.
 
 Here is a quick demo of the application running: 
 
-![https://github.com/user-attachments/assets/2a3adcf6-5aea-45f2-80f6-3b82b6c40c5e]()
+
+
+![https://github.com/user-attachments/assets/d73b254d-58d9-4d84-9b5c-821cfc7b6d91]()
+
+
 
 
 
