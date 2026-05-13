@@ -17,6 +17,15 @@ column, but is also meant to grow into a foundation for automation and completio
 tracking — for example, a points system to keep track of progress on a given
 assignment.
 
+Only thing I haven't done yet is make it runnable as a command and not from the repo itself,
+but I usually run fish+tmux so this hasn't affected my workflow. 
+
+Here is a quick demo of the application running: 
+
+![https://github.com/user-attachments/assets/2a3adcf6-5aea-45f2-80f6-3b82b6c40c5e]
+
+
+
 ## How it works
 
 ScatterCLI reads an Obsidian Kanban markdown file directly. Obsidian Kanban boards are
