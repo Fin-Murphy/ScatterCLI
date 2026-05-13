@@ -24,7 +24,7 @@ Here is a quick demo of the application running:
 
 
 
-![https://github.com/user-attachments/assets/baac81cd-e8ce-47e5-8b55-ed0cdb7dae01]()
+![](demo.mp4)
 
 
 
