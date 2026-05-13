@@ -24,7 +24,8 @@ Here is a quick demo of the application running:
 
 
 
-![](/demo.mp4)
+<img width="720" height="436" alt="demo" src="https://github.com/user-attachments/assets/91c23341-65b9-4c46-b0d0-7c2ecbaed057" />
+
 
 
 
