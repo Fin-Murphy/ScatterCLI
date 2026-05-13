@@ -20,7 +20,7 @@ assignment.
 Only thing I haven't done yet is make it runnable as a command and not from the repo itself,
 but I usually run fish+tmux so this hasn't affected my workflow. 
 
-Here is a quick demo of the application running: 
+Here is a quick demo of the application running (turning it into a gif nuked quality srry) :
 
 
 
