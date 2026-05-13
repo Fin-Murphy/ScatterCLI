@@ -24,11 +24,7 @@ Here is a quick demo of the application running:
 
 
 
-![](demo.mp4)
-
-
-
-
+![](/demo.mp4)
 
 
 
